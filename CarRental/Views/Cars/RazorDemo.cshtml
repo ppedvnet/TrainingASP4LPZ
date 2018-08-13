@@ -1,0 +1,8 @@
+﻿@using CarRental.Models
+@{
+    var auto = ((CarVm)ViewData["Auto"]).Name;
+}
+
+<h2>RazorDemo, @auto</h2>
+
+<p>@((ViewBag.Auto as CarVm).Name)</p>

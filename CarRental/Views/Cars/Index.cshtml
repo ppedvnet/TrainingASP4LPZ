@@ -1,0 +1,69 @@
+﻿@model IEnumerable<CarRental.Models.CarVm>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@if (Model != null)
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Producer)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Age)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Consumption)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody id="cars-area">
+            @Html.Partial("_CarsTableResult", Model)
+        </tbody>
+    </table>
+}
+else
+{
+    <p>Leider keine Autos vorhanden...</p>
+}
+
+<button type="button" class="btn btn-danger" id="morecars">Mehr Autos laden</button>
+
+@*@Ajax.ActionLink("Mehr Autos laden", "GetMoreCars", "Cars", new AjaxOptions()
+{
+    HttpMethod = "GET",
+    AllowCache = false,
+    InsertionMode = InsertionMode.InsertAfter,
+    UpdateTargetId = "cars-area"
+}, new { @class = "btn btn-success" })*@
+
+@section scripts {
+    @*@Scripts.Render("~/bundels/ajax")*@  
+ 
+    <script>
+        var url = '@(Url.Action("GetMoreCars", "Cars", null, Request.Url.Scheme))';
+
+        $("button#morecars").on("click", () => {
+            $.ajax({
+                url: url,
+                type: 'GET'
+            })
+                .done((data) => $("#cars-area").append(data))
+                .fail((err) => console.log(err))
+                .always(() => console.log("Request completed..."));
+        });
+
+    </script>
+}
