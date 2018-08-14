@@ -1,0 +1,99 @@
+﻿@using PagedList.Mvc;
+@model PagedList.IPagedList<DBFirstDemo.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm())
+{
+    <table class="table">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.First().CompanyName)
+            </th>
+            <th>
+                @Html.ActionLink("Contact Name", "Index", new { sortOrder = "ContactName", Asc = !ViewBag.Asc })
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().ContactTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Address)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Region)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().PostalCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Phone)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.First().Fax)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CompanyName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ContactTitle)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Address)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Region)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Phone)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Fax)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.CustomerID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.CustomerID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.CustomerID })
+                </td>
+            </tr>
+        }
+
+    </table>
+    <br />
+    <div class="text-center">
+        Seite @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) von @Model.PageCount
+
+        @Html.PagedListPager(Model, Page => Url.Action("Index", new { sortOrder = ViewBag.CurrentSort, Page, previousOrder = ViewBag.Asc }))
+    </div>
+}

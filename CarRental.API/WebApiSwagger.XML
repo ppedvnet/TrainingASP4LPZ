@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CarRental.API</name>
+    </assembly>
+    <members>
+        <member name="M:CarRental.API.Controllers.CarsController.GetCars">
+            <summary>
+            GET: api/Cars super cool description
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>
