@@ -2,7 +2,6 @@
 using System.Web.Mvc;
 using System.Collections.Generic;
 using AutoMapper;
-using Snacklager.Logic;
 using Snacklager.Logic.Contracts;
 using Snacklager.Web.Models;
 using Snacklager.Data;
