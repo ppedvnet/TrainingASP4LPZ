@@ -10,8 +10,9 @@ namespace Snacklager.Web
     {
         protected void Application_Start()
         {
-            ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
+            AutofacConfig.RegisterComponents();
             Mapper.Initialize(c => c.AddProfile<MappingProfile>());
+            ModelBinders.Binders.Add(typeof(decimal), new DecimalModelBinder());
 
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);

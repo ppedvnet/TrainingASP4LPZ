@@ -1,17 +1,36 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 using System.Collections.Generic;
 using AutoMapper;
 using Snacklager.Logic;
 using Snacklager.Logic.Contracts;
 using Snacklager.Web.Models;
-using System;
 using Snacklager.Data;
+using System.Web;
+using Snacklager.Web.Filters;
 
 namespace Snacklager.Web.Controllers
 {
     public class SnackController : Controller
     {
-        ISnackRepository _snackRepo = new SnackRepository();
+        //ISnackRepository _snackRepo = new SnackRepository();
+        private readonly ISnackRepository _snackRepo;
+
+        public SnackController(ISnackRepository snackRepository)
+        {
+            _snackRepo = snackRepository;
+        }
+
+        // Language Switch
+        public ActionResult SetCulture(string culture)
+        {
+            var langKeks = new HttpCookie("culture", culture);
+            langKeks.Expires = DateTime.Now.AddDays(1);
+
+            Response.Cookies.Add(langKeks);
+
+            return RedirectToAction("Create");
+        }
 
         // GET: Snack
         public ActionResult Index()
@@ -30,6 +49,7 @@ namespace Snacklager.Web.Controllers
         }
 
         // GET: Snack/Create
+        [Localize]
         public ActionResult Create()
         {
             return View();

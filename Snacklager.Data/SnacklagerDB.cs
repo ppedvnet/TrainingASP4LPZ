@@ -8,10 +8,15 @@ namespace Snacklager.Data
 
     public partial class SnacklagerDB : DbContext
     {
-        public SnacklagerDB()
-            : base("name=SnacklagerDBModel")
+        public SnacklagerDB(string connecitonString) : base(connecitonString)
         {
+
         }
+
+        //public SnacklagerDB()
+        //    : base("name=SnacklagerDBModel")
+        //{
+        //}
 
         public virtual DbSet<Lager> Lager { get; set; }
         public virtual DbSet<Lagerhaltung> Lagerhaltung { get; set; }

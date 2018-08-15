@@ -7,6 +7,11 @@ namespace Snacklager.Logic
 {
     public class SnackRepository : Repository<Snack>, ISnackRepository
     {
+        public SnackRepository(SnacklagerDB db) : base(db)
+        {
+
+        }
+
         public IEnumerable<Snack> GetTopSnacks()
         {
             return _table.OrderBy(x => x.Lagerhaltung.Select(y => y.Einheiten)).ToList();

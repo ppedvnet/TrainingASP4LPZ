@@ -12,11 +12,17 @@ namespace Snacklager.Logic
         protected readonly SnacklagerDB _db = null;
         protected readonly DbSet<T> _table = null;
 
-        public Repository()
+        public Repository(SnacklagerDB db)
         {
-            _db = new SnacklagerDB();
+            _db = db;
             _table = _db.Set<T>();
         }
+
+        //public Repository()
+        //{
+        //    _db = new SnacklagerDB();
+        //    _table = _db.Set<T>();
+        //}
 
         public T FindById(int id)
         {
