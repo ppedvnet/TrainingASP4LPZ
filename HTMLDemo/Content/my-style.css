@@ -1,0 +1,23 @@
+html, body {
+    height:100%;
+    width:100%;
+}
+
+/* IE outline */
+a:active, a:focus {
+    outline:none;
+}
+
+section {
+    height:auto;
+    min-height:100%;
+    overflow:hidden;
+    padding-top:70px;
+}
+
+#home {
+    background-image: url('../images/01.jpg');
+    background-size:cover;
+    text-align:center;
+    color:white;
+}

@@ -1,0 +1,77 @@
+@import url(https://fonts.googleapis.com/css?family=Open+Sans);
+
+/* Variables */
+@font: 'Open Sans', sans-serif;
+@bgCol: #252122;
+@headerCol:#8DBDC1;
+@fontCol:#F3EDDF;
+@footerCol:#F1AB53;
+
+/* Mixin */
+.links(){
+    a {
+        font-weight:bold;
+        &:link, &:visited {
+            color: @footerCol;
+        }
+        &:hover {
+            color:@fontCol;
+        }
+    }
+}
+
+.rahmen(@col) {
+    border: 1px solid @col;
+    padding:1rem;
+    margin-top:2rem;
+    border-radius:1rem;
+}
+
+/* Nesting */
+nav {
+    ul, li {
+        list-style:none;
+        margin:0;
+        padding:0;
+        border:0;
+    }
+    ul {
+        text-align:center;
+    }
+    li {
+        display:inline-block;
+    }
+    .links()
+}
+
+html, body {
+    margin:0;
+    height:100%;
+}
+
+body {
+    background-color: @bgCol;
+    font-family: @font;
+    color: @fontCol;
+    .links()
+}
+
+body > header {
+    background-color:@headerCol;
+    width:100%;
+    height:auto;
+    text-align:center;
+    position:absolute;
+}
+
+body > section {
+    max-width:50rem;
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:6rem;
+}
+
+article {
+    .rahmen(@footerCol)
+}
+

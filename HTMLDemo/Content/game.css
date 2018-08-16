@@ -1,0 +1,24 @@
+.card {
+    display: inline-block;
+    font-size:20px;
+    border:1px solid black;
+    width:100px;
+    height:150px;
+    border-radius: 5px;
+    position: relative;
+}
+
+.upper, .lower {
+    position: absolute;
+}
+
+.upper {
+    top: 5px;
+    left: 10px;
+}
+
+.lower {
+    bottom: 5px;
+    right: 10px;
+    transform: rotate(180deg);
+}
